@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} Share Files {% endblock %}
+
+{% block content %}
+<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+	<form action="demo_form.asp">
+		{% for tag in tag_set %}
+		<div>
+			<input id="tag-{{tag.id}}" type="checkbox" name="tags" value="{{tag.id}}">
+			<label for="tag-{{tag.id}}">{{tag.text}}</label>
+		</div>
+		{% endfor %}
+		<label for='files'>Select files: </label>
+		<input id='files' type='file' name="share_files" multiple>
+		<input type="submit" value="Share">
+	</form> 
+</form>
+{% endblock %}

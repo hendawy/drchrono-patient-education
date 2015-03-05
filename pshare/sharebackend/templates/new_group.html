@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %} New Group {% endblock %}
+
+{% block content %}
+<form action="" method="POST">{% csrf_token %}
+	<div><input name="group_name" type="text" placeholder="Group Name"/></div>
+	{% for patient in patients %}
+	<div>
+		<input id="patients-{{patient.id}}" type="checkbox" name="patients" value="{{patient.id}}">
+		<label for="patients-{{patient.id}}">
+			{{patient.first_name}} {{patient.last_name}}
+		</label>
+	</div>
+	{% endfor %}
+	<input type="submit" value="create"/>
+</form>
+{% endblock %}
