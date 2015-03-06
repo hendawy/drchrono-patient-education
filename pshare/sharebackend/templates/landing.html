@@ -51,28 +51,13 @@
         <div class="container tim-container">
             <div class="row tim-row">
                 <div class="col-md-3 col-md-offset-1">
-                    <br/>
-                    <br/>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li role="presentation" {% if section == 'list_groups' %} class="active" {% endif %}>
-                            <a href="/sharebackend/group/">All Groups</a>
-                        </li>
-                        <li role="presentation" {% if section == 'new_group' %} class="active" {% endif %}>
-                            <a href="/sharebackend/group/add/new/">Add a New Group</a>
-                        </li>
-                        <li role="presentation" {% if section == 'list_files' %} class="active" {% endif %}>
-                            <a href="/sharebackend/files/">All Files</a>
-                        </li>
-                        <li role="presentation" {% if section == 'file_share' %} class="active" {% endif %}>
-                            <a href="/sharebackend/group/file/share/">Share Files and Documents</a>
-                        </li>
-                        <li role="presentation" {% if section == 'logout' %} class="active" {% endif %}>
-                            <a href="/sharebackend/logout/">Logout</a>
-                        </li>
-                    </ul>
                 </div>
+                <div class="col-md-7"></div>
                 {% block content %}
+                    <h1>Welcome to DrChrono Patient Education Platform</h1>
+                    <h2><a href="/sharebackend/">Login</a></h2>
                 {% endblock %}
+                </div>
             </div>   
         </div>
     </div>

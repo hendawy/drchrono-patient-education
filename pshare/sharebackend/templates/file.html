@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %} Document - {{file_name}} {% endblock %}
+
+{% block content %}
+<div class="col-md-7">
+    <h2>Document <b>{{file_name}}</b></h2>
+    <h3>Groups</h3>
+    <div>
+        {% for tag in shared_tags %}
+        <a href="/sharebackend/group/{{tag.tag.text}}/">
+            <div class="row">
+                <div class="col-md-5">
+                    <h3><b>{{tag.tag.text}}</b></h3>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <br/><br/>
+    <div>
+        <form action="" method="POST">{% csrf_token %}
+            <h3>Share file with more groups</h3>
+            <h4><b>Select Groups: </b></h4>
+            {% for tag in tags %}
+            <div>
+                <label class="checkbox" for="tag-{{tag.id}}">
+                    <input type="checkbox" value="{{tag.id}}" id="tag-{{tag.id}}" name="tags" data-toggle="checkbox"/>
+                    <h5><b>{{tag.text}}</b></h5>
+                </label>
+            </div>
+            {% endfor %}
+            <br/>
+            <button class="btn-lg btn btn-success btn-fill" type="submit">
+                <b>Share</b>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

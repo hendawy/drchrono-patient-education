@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %} All Groups {% endblock %}
+
+{% block content %}
+<div class="col-md-7">
+	<h1>All Groups</h1>
+	{% for tag in tags %}
+	<div class="row tim-row">
+		<div class="col-md-6">
+			<h3><b><a href="/sharebackend/group/{{tag.text}}/">{{tag.text}}</a></b></h3>
+		</div>
+		<div class="col-md-2">
+			<button class="delete-group btn btn-block btn-sm btn-fill btn-danger" id="{{tag.text}}">
+				<b>Delete</b>
+			</button>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript">
+	$(".delete-group").click(function(){
+	  var groupText = $(this).attr('id');
+	  var deleteConfirmation = confirm("Are you sure?");
+		if (deleteConfirmation == true) {
+		    window.location.replace("/sharebackend/group/remove/"+groupText+"/");
+		}
+	});
+</script>
+{% endblock %}

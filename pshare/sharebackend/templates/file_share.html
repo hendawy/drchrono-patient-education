@@ -3,17 +3,26 @@
 {% block title %} Share Files {% endblock %}
 
 {% block content %}
-<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
-	<form action="demo_form.asp">
+<div class="col-md-7">
+	<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+		<h1>Share Files and Documents</h1>
+		<br/>
+		<h3><b>Select Groups: </b></h3>
 		{% for tag in tag_set %}
 		<div>
-			<input id="tag-{{tag.id}}" type="checkbox" name="tags" value="{{tag.id}}">
-			<label for="tag-{{tag.id}}">{{tag.text}}</label>
+			<label class="checkbox" for="tag-{{tag.id}}">
+				<input type="checkbox" value="{{tag.id}}" id="tag-{{tag.id}}" name="tags" data-toggle="checkbox"/>
+				<h4><b>{{tag.text}}</b></h4>
+			</label>
 		</div>
 		{% endfor %}
-		<label for='files'>Select files: </label>
-		<input id='files' type='file' name="share_files" multiple>
-		<input type="submit" value="Share">
-	</form> 
-</form>
+		<br/>
+		<label for='files'><h3><b>Select files: </b></h3></label>
+		<input class="btn btn-success btn-fill" id='files' type='file' name="share_files" multiple/>
+		<br/>
+		<button class="btn-lg btn btn-success btn-fill" type="submit">
+			<b>Share</b>
+		</button>
+	</form>
+</div>
 {% endblock %}

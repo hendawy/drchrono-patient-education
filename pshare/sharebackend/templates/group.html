@@ -1,13 +1,67 @@
 {% extends "base.html" %}
 
-{% block title %} {{group_name}} Group {% endblock %}
+{% block title %} The {{group_name}} Group {% endblock %}
 
 {% block content %}
-	<h1>{{group_name}}</h1>
-	{% for patient in patients %}
-	<div>
-		{{patient.first_name}} {{patient.last_name}}
-	</div>
-	{% endfor %}
-</form>
-{% endblock %}`
+<div class="col-md-7">
+    <h1>The <b>{{group_name}}</b> Group</h1>
+    <h3>Group Members</h3>
+    <br/>
+    <div>
+        {% for patient in patients %}
+        <a href="https://drchrono.com/patients/{{patient.id}}/">
+            <div class="row">
+                <div class="col-md-2">
+                    <b>{{patient.chart_id}}</b>
+                </div>
+                <div class="col-md-5">
+                    <b>{{patient.first_name}} {{patient.first_name}} {{patient.last_name}}</b>
+                </div>
+                <div class="col-md-2">
+                    <b>{{patient.email}}</b>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        <br/>
+        <h3>Files shared with this group</h3>
+        <br/>
+        {% for file_tag in files_shared %}
+        <div>
+            <h5>
+                <b><a href="/sharebackend/file/{{file_tag.file_share.id}}/">{{file_tag.file_share.file_name}}</a></b>
+            </h5>
+        </div>
+        {% endfor %}
+    </div>
+    <div>
+        <form action="" method="POST">{% csrf_token %}
+        <h2>Add Members to The <b>{{group_name}}</b> Group</h2>
+        <br/>
+        {% for patient in untagged_patients %}
+        <div>
+            <label class="checkbox" for="patients-{{patient.id}}">
+                <input type="checkbox" value="{{patient.id}}" id="patients-{{patient.id}}" name="patients" data-toggle="checkbox"/>
+                <div class="row">
+                    <div class="col-md-2">
+                        <b>{{patient.chart_id}}</b>
+                    </div>
+                    <div class="col-md-5">
+                        <b>{{patient.first_name}} {{patient.first_name}} {{patient.last_name}}</b>
+                    </div>
+                    <div class="col-md-2">
+                        <b>{{patient.email}}</b>
+                    </div>
+                </div>
+            </label>
+        </div>
+        {% endfor %}
+        <br/>
+        <button class="btn-lg btn btn-success btn-fill" type="submit">
+            <b>Add New Members</b>
+        </button>
+    </form>
+    </div>
+
+</div>
+{% endblock %}

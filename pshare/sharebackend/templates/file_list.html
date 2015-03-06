@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} All Files {% endblock %}
+
+{% block content %}
+<div class="col-md-7">
+	<h1>All Files</h1>
+	{% for file in files %}
+	<div class="row">
+		<div class="col-md-8">
+			<h5><b><a href="/sharebackend/file/{{file.id}}/">{{file.file_name}}</a></b></h5>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}

@@ -11,19 +11,14 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+# TO_MODIFY: Add your own Database setting. MySQL recommended
 DATABASES = {
     'default': {
-        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'ENGINE': 'django.db.backends.mysql',
-        # Or path to database file if using sqlite3.
-        'NAME': 'pshare',
-        # Not used with sqlite3.
-        'USER': 'root',
-        # Not used with sqlite3.
-        'PASSWORD': 'usudie',
-        # Set to empty string for localhost. Not used with sqlite3.
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
         'HOST': '',
-        # Set to empty string for default. Not used with sqlite3.
         'PORT': '',
     }
 }
@@ -125,6 +120,8 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -170,15 +167,19 @@ LOGGING = {
     }
 }
 
+UPLOAD_DIR = 'uploads/'
+
+#auth profile
+AUTH_PROFILE_MODULE = 'sharebackend.UserProfile'
+
 #DrChrono API settings
 DRC_AUTH_URL = 'https://drchrono.com/o/authorize/'
 DRC_REDIRECT_URI = '{0}sharebackend/'.format(BASE_URL)
-DRC_CLIENT_ID = 'qWU0PdXELsElGteaDiRZv5l7iThBRisVCuO2qq6d'
-DRC_CLIENT_SECRET = 'ukpWUUhyJwvtvHD2bAfxYCowBd5QIblf2jkuxqfq' + \
-    'tg745UQQ7CPKj29x93oWI5tT6byux2Hqwnnu7a4EsivDPeJ2nZb5i' + \
-    'M7WIehBpPCG3qTBT0XI6wLQVGG8fPL4iRVS'
+DRC_CLIENT_ID = ''  # TO_MODIFY
+DRC_CLIENT_SECRET = ''  # TO_MODIFY
 DRC_TOKEN_URL = 'https://drchrono.com/o/token/'
 DRC_BASE_URL = 'https://drchrono.com/api/'
+DRC_WEBAPP_URL = 'https://drchrono.com/patients/'
 
 import urllib
 DRC_REQUEST_AUTH_CODE_URL = '{0}?{1}'.format(
@@ -186,3 +187,13 @@ DRC_REQUEST_AUTH_CODE_URL = '{0}?{1}'.format(
         'redirect_uri': DRC_REDIRECT_URI,
         'response_type': 'code',
         'client_id': DRC_CLIENT_ID}))
+
+
+# Celery settings
+CELERY_TIMEZONE = TIME_ZONE
+
+EMAIL_HOST = ''  # TO_MODIFY
+EMAIL_PORT = ''  # TO_MODIFY
+EMAIL_HOST_USER = ''  # TO_MODIFY
+EMAIL_HOST_PASSWORD = ''  # TO_MODIFY
+EMAIL_USE_TLS = True
