@@ -3,7 +3,7 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-BASE_URL = 'http://localhost:8001/'
+BASE_URL = ''  # TO_MODIFY
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
