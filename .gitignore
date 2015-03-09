@@ -2,3 +2,4 @@
 static
 uploads
 celerybeat-schedule
+.DS_Store
